@@ -4,7 +4,7 @@
 		<view class="search_area">
 			<view class="search_text">
 				<!-- 输入框 -->
-				<input class="search_input" bindinput="getkeyword" placeholder="黄焖鸡"/>
+				<input class="search_input" bindinput="getkeyword" placeholder="黄焖鸡" />
 				<!-- 每个标签都有一个bindtap属性 等价于onclick -->
 				<image src="/imgs/fangdajing.png" bindtap="dosearch" />
 			</view>
@@ -39,9 +39,56 @@
 	<view class="hot_product_container">
 		<view class="hot_product_area">
 			<text >热销好菜推荐</text>
-			<view class="hot_item">商品1</view>
-			<view class="hot_item">商品2</view>
-			<view class="hot_item">商品3</view>
+			<view class="hot_products">
+				<view class="hot_item">
+					<image src="/imgs/food.jpg" />
+					<text>商品描述</text>
+				</view>
+				<view class="hot_item">
+					<image src="/imgs/food2.jpg" />
+					<text>商品描述2</text>
+				</view>
+				<view class="hot_item">
+					<image src="/imgs/food3.jpg" />
+					<text>商品描述3</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 商品列表 -->
+	<view class="product_list_container">
+		<view class="product_list_area">
+			<view class="product_list_item">
+				<image src="/imgs/food3.jpg" />
+				<view class="describe">
+					<text class="title">享多味汉堡炸鸡</text>
+					<text class="rating">4.7分</text>
+					<text class="month_sale">月销:128</text>
+					<text class="price">￥17.99</text>
+				</view>
+			</view>
+
+			<view class="product_list_item">
+				<image src="/imgs/food3.jpg" />
+				<view class="describe">
+					<text class="title">享多味汉堡炸鸡</text>
+					<text class="rating">4.7分</text>
+					<text class="month_sale">月销:128</text>
+					<text class="price">￥17.99</text>
+				</view>
+			</view>
+
+			<view class="product_list_item">
+				<image src="/imgs/food3.jpg" />
+				<view class="describe">
+					<text class="title">享多味汉堡炸鸡</text>
+					<text class="rating">4.7分</text>
+					<text class="month_sale">月销:128</text>
+					<text class="price">￥17.99</text>
+				</view>
+			</view> 
+
 		</view>
 	</view>
 </view>
