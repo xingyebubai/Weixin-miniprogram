@@ -1,0 +1,13 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+    <view class="search_container">
+		<view class="search_area">
+			<view class="search_text">
+				<!-- 输入框 -->
+				<input class="search_input" bindinput="getkeyword" />
+				<!-- 每个标签都有一个bindtap属性 等价于onclick -->
+				<image src="/imgs/fangdajing.png" bindtap="dosearch" />
+			</view>
+		</view>
+	</view>
+</view>
