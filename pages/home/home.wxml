@@ -72,7 +72,7 @@
 			<view class="product_list_item">
 				<image src="/imgs/food3.jpg" />
 				<view class="describe">
-					<text class="title">享多味汉堡炸鸡</text>
+					<text class="title">老八秘制小汉堡</text>
 					<text class="rating">4.7分</text>
 					<text class="month_sale">月销:128</text>
 					<text class="price">￥17.99</text>

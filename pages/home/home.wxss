@@ -69,7 +69,7 @@
     border-radius: 50rpx;
     margin: 20rpx;
     padding: 20rpx;
-    background-color: #99e799;
+    background-color: #efe9b9;
 }
 
 .hot_product_area .hot_products{
@@ -104,7 +104,7 @@
     height: 230rpx;
     width: 700rpx;
     /* border: 1px solid red; */
-    background-color: #99e799;
+    background-color: #efe9b9;
     border-radius: 20rpx;
     margin: 10rpx 0;
     position: relative;
@@ -113,15 +113,35 @@
     height: 200rpx;
     width: 200rpx;
     border-radius: 20rpx;
-    margin: 2rpx;
+    margin: 10rpx;
 }
 .product_list_item .describe{
+    width: 400rpx;
     display: block;
     position: absolute;
     left: 250rpx;
     top: 10rpx;
+     
 }
 .product_list_item text{
     display: block;
     /* position: absolute; */
+    font-size: 30rpx;
+    /* font-weight: bold; */
+    color: #8e9696;
+}
+
+.describe .title{
+    width: 400rpx;
+    color: black;
+    font-size: 50rpx;
+    /* 内容溢出后隐藏 */
+    overflow: hidden;
+    /* 文本溢出的部变成... 文本截断 */
+    text-overflow: ellipsis;
+    /* 当文本到达末尾时文本不换行 */
+    white-space: nowrap;
+}
+.describe .rating{
+    color:#ff7412;
 }
