@@ -1,13 +1,48 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-    <view class="search_container">
+	<view class="search_container">
 		<view class="search_area">
 			<view class="search_text">
 				<!-- 输入框 -->
-				<input class="search_input" bindinput="getkeyword" />
+				<input class="search_input" bindinput="getkeyword" placeholder="黄焖鸡"/>
 				<!-- 每个标签都有一个bindtap属性 等价于onclick -->
 				<image src="/imgs/fangdajing.png" bindtap="dosearch" />
 			</view>
 		</view>
 	</view>
+
+	<!-- 商品系列 -->
+	<view class="product_container">
+		<view class="product_area">
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+			<view class="item">商品占位</view>
+		</view>
+	</view>
+	<!-- 补贴红包 -->
+	<!-- <view class="red_packet_container">
+		<view class="red_packet_area">
+			<view class="item"></view>
+			<view class="item"></view>
+			<view class="item"></view>
+		</view>
+	</view> -->
+
+	<!-- 热销菜品 -->
+	<view class="hot_product_container">
+		<view class="hot_product_area">
+			<text >热销好菜推荐</text>
+			<view class="hot_item">商品1</view>
+			<view class="hot_item">商品2</view>
+			<view class="hot_item">商品3</view>
+		</view>
+	</view>
 </view>
+

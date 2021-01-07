@@ -1,1 +1,76 @@
 /* pages/home/home.wxss */
+.container{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* 搜索框样式 */
+.container .search_container{
+    width: 100%;
+    height: 120rpx;
+    /* border: 1rpx solid red; */
+}
+.search_container .search_area{
+    width:100%;
+    height: 100%;
+    /* border: 1rpx solid red; */
+    position: relative;
+}
+
+.search_area .search_text{
+    width: 450rpx;
+    height:60rpx;
+    /* background-color: red; */
+    position: absolute;
+    top:20rpx;
+    left: 145rpx;
+    border-radius: 100rpx;
+    border: 1rpx solid #3836c5;
+}
+
+.search_text input{
+    height: 100%;
+    width: 380rpx;
+    position:absolute;
+    left: 20rpx;
+}
+
+.search_text image{
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 10rpx;
+    top:5rpx;
+}
+
+/* 商品系列 */
+.product_container .product_area{
+    height: 320rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product_container .product_area .item{
+    height: 100rpx;
+    width: 100rpx;
+    border: 1rpx solid green;
+    margin: 20rpx;
+}
+
+/* 热销好菜推荐 */
+.hot_product_container{
+    height: 500rpx;
+    width: 90%;
+    border: 1px solid red;
+    border-radius: 50rpx;
+    margin: 20rpx;
+    padding: 20rpx;
+    background-color: #fff3e3;
+}
+
+.hot_product_area hot_products{
+}
