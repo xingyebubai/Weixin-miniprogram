@@ -14,16 +14,12 @@
 	<!-- 商品系列 -->
 	<view class="product_container">
 		<view class="product_area">
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
-			<view class="item">商品占位</view>
+			<block wx:for="{{products}}" wx:key="key">
+				<view class="item">
+					<image src="{{item.url}}" />
+					<text>{{item.catename}}</text>
+				</view>
+			</block>
 		</view>
 	</view>
 	<!-- 补贴红包 -->
