@@ -80,6 +80,7 @@ Page({
             },
     
         ],
+        products_list: [],
         
     
     },
@@ -112,7 +113,17 @@ Page({
                 products: processed_products
             })
         }
-    })
+    });
+        wx.request({
+            url: "http://192.168.5.31:8080/goods/goodsList",
+            method: "GET",
+            success: res => {
+                // console.log(res);
+                this.setData({
+                    products_list: res.data.data
+                })
+            }
+        })
     },
 
     /**
