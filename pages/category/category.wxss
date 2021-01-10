@@ -1,0 +1,53 @@
+/* pages/category/category.wxss */
+.product_list_container .product_list_area{
+    display: flex;
+    flex-direction: column;
+
+    /* 垂直居中 */
+    align-items: center;
+}
+.product_list_area .product_list_item{
+    height: 230rpx;
+    width: 700rpx;
+    /* border: 1px solid red; */
+    background-color: #eef5ee;
+    border-radius: 20rpx;
+    margin: 10rpx 0;
+    position: relative;
+}
+.product_list_item image{
+    height: 200rpx;
+    width: 200rpx;
+    border-radius: 20rpx;
+    margin: 10rpx;
+}
+.product_list_item .describe{
+    width: 400rpx;
+    display: block;
+    position: absolute;
+    left: 250rpx;
+    top: 10rpx;
+     
+}
+.product_list_item text{
+    display: block;
+    /* position: absolute; */
+    font-size: 30rpx;
+    /* font-weight: bold; */
+    color: #8e9696;
+}
+
+.describe .title{
+    width: 400rpx;
+    color: black;
+    font-size: 50rpx;
+    /* 内容溢出后隐藏 */
+    overflow: hidden;
+    /* 文本溢出的部变成... 文本截断 */
+    text-overflow: ellipsis;
+    /* 当文本到达末尾时文本不换行 */
+    white-space: nowrap;
+}
+.describe .rating{
+    color:#ff7412;
+}

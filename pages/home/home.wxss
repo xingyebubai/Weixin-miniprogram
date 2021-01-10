@@ -68,7 +68,8 @@
 
 /* 热销好菜推荐 */
 .hot_product_container{
-    height: 500rpx;
+    min-height: 400rpx;
+    /* height: 500rpx; */
     width: 90%;
     /* border: 1px solid red; */
     border-radius: 50rpx;
@@ -77,10 +78,11 @@
     background-color: #eef5ee;
 }
 
-.hot_product_area .hot_products{
+.hot_product_area {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 
@@ -90,12 +92,13 @@
     border-radius: 20rpx;
     margin: 2rpx;
 }
-.hot_products .hot_item{
+.hot_item{
     /* border: 1px solid red; */
-    height: 400rpx;
+    height: 450rpx;
     width: 30%;
     margin: 5rpx;
 }
+
 
 /* 商品列表 */
 .product_list_container .product_list_area{

@@ -1,5 +1,6 @@
 <!--pages/home/home.wxml-->
-<wxs module="filters" src="home.wxs"></wxs>
+<wxs module="filters" src="home.wxs" />
+
 <view class="container">
 	<view class="search_container">
 		<view class="search_area">
@@ -17,39 +18,23 @@
 		<view class="product_area">
 			<block wx:for="{{products}}" wx:key="key">
 				<view class="item">
-					<image src="{{item.url}}" />
+					<image src="{{item.url}}" bindtap="gotoProductCategory" data-id="{{item.id}}" />
 					<text>{{item.catename}}</text>
 				</view>
 			</block>
 		</view>
 	</view>
-	<!-- 补贴红包 -->
-	<!-- <view class="red_packet_container">
-		<view class="red_packet_area">
-			<view class="item"></view>
-			<view class="item"></view>
-			<view class="item"></view>
-		</view>
-	</view> -->
 
 	<!-- 热销菜品 -->
 	<view class="hot_product_container">
+		<text >热销好菜推荐</text>
 		<view class="hot_product_area">
-			<text >热销好菜推荐</text>
-			<view class="hot_products">
+			<block wx:for="{{hot_products_cate_list}}">
 				<view class="hot_item">
-					<image src="/imgs/food.jpg" />
-					<text>商品描述</text>
+					<image src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" bindtap="gotoProductDetails" data-id="{{item.id}}"/>
+					<text>{{item.name}}</text>
 				</view>
-				<view class="hot_item">
-					<image src="/imgs/food2.jpg" />
-					<text>商品描述2</text>
-				</view>
-				<view class="hot_item">
-					<image src="/imgs/food3.jpg" />
-					<text>商品描述3</text>
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 
@@ -61,33 +46,13 @@
 					<image src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" />
 					<view class="describe">
 						<text class="title">{{item.name}}</text>
-						<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分</text>
+						<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分
+																								</text>
 						<text class="month_sale">月销:{{item.sellcount}}</text>
 						<text class="price">￥{{item.price}}</text>
 					</view>
 				</view>
 			</block>
-
-			<!-- <view class="product_list_item">
-				<image src="/imgs/food3.jpg" />
-				<view class="describe">
-					<text class="title">老八秘制小汉堡</text>
-					<text class="rating">4.7分</text>
-					<text class="month_sale">月销:128</text>
-					<text class="price">￥17.99</text>
-				</view>
-			</view>
-
-			<view class="product_list_item">
-				<image src="/imgs/food3.jpg" />
-				<view class="describe">
-					<text class="title">享多味汉堡炸鸡</text>
-					<text class="rating">4.7分</text>
-					<text class="month_sale">月销:128</text>
-					<text class="price">￥17.99</text>
-				</view>
-			</view>  -->
-
 		</view>
 	</view>
 </view>

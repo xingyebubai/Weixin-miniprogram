@@ -1,0 +1,2 @@
+<!--pages/details/details.wxml-->
+<text>这里是商品详情页{{id}}</text>

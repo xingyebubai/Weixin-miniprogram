@@ -1,18 +1,42 @@
-// pages/orders/orders.js
+// pages/category/category.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        cateId: 1,
+        products_list: [],
+    },
 
+    gotoProductDetails: function (event) {
+      var target_id = event.currentTarget.dataset.id;
+      wx.navigateTo({
+          url: "/pages/details/details?id=" + target_id,
+      })  
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
+        console.log(options.cateId);
+        wx.request({
+            url: 'http://192.168.5.31:8080/goods/queryByCateId',
+            method: "GET",
+            data: {
+                cateId: options.cateId
+            },
+            success: (res) => {
+                console.log(res);
+                this.setData({
+                    cateId: options.cateId,
+                    products_list: res.data.data,
+                })
+            },
+
+        })
+
     },
 
     /**

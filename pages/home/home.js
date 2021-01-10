@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        // 商品种类的url链接
         urls: [
             "/imgs/banner1.jpg",
             "/imgs/banner2.jpg",
@@ -17,80 +18,38 @@ Page({
             "/imgs/banner9.jpg",
             "/imgs/banner10.jpg",
         ],
-        products: [
-            {
-                "id": 2,
-                "cateName": "单人精彩套餐",
-                "state": 1,
-                "url": "/imgs/banner1.jpg"
-            },
-            {
-                "id": 3,
-                "cateName": "冰爽饮品限时特惠",
-                "state": 1,
-                "url": "/imgs/banner2.jpg"
-            },
-            {
-                "id": 4,
-                "cateName": "精选热菜",
-                "state": 1,
-                "url": "/imgs/banner3.jpg"
-            },
-            {
-                "id": 5,
-                "cateName": "爽口凉菜",
-                "state": 1,
-                "url": "/imgs/banner4.jpg"
-            },
-            {
-                "id": 6,
-                "cateName": "老八秘制系列",
-                "state": 1,
-                "url": "/imgs/banner5.jpg"
-            },
-            {
-                "id": 7,
-                "cateName": "现炒盖饭",
-                "state": 1,
-                "url": "/imgs/banner6.jpg"
-            },
-            {
-                "id": 8,
-                "cateName": "烤串区",
-                "state": 1,
-                "url": "/imgs/banner7.jpg"
-            },
-            {
-                "id": 9,
-                "cateName": "盖饭系列",
-                "state": 1,
-                "url": "/imgs/banner8.jpg"
-            },
-            {
-                "id": 10,
-                "cateName": "小吃搭饮料",
-                "state": 1,
-                "url": "/imgs/banner9.jpg"
-            },
-            {
-                "id": 11,
-                "cateName": "新品专项",
-                "state": 1,
-                "url": "/imgs/banner10.jpg"
-            },
-    
-        ],
+        // 所有产品的信息
+        products: [],
+
+        // 分类产品信息
         products_list: [],
-        
-    
+        // 热销榜
+        hot_products_cate_id: 47,
+        hot_products_cate_list: [],
+
+
+    },
+    gotoProductDetails: function (event) {
+      var target_id = event.currentTarget.dataset.id;
+      wx.navigateTo({
+          url: "/pages/details/details?id=" + target_id,
+      })  
     },
 
+    gotoProductCategory: function (event) {
+        var target_id = event.currentTarget.dataset.id;
+        // console.log(target_id);
+        wx.navigateTo({
+            url: "/pages/category/category?cateId=" + target_id,
+        })
+
+    },
     // 因为数据框中没有设计图片url, 所以这里需要拼接一个url
-    processProducts: function(obj) {
+    processProducts: function (obj) {
         var ret = [];
         var i = 0;
         for (let item of obj) {
-            if(item.catename == "热销榜")  continue;
+            if (item.catename == "热销榜") continue;
 
             item.url = this.data.urls[i++];
             ret.push(item);
@@ -103,24 +62,40 @@ Page({
      */
     onLoad: function (options) {
         var processed_products;
+        var that = this;
+        var category_id = 0;
         wx.request({
             url: "http://192.168.5.31:8080/cate/queryAll",
-            method:"GET",
+            method: "GET",
             success: res => {
                 processed_products = this.processProducts(res.data.data);
                 this.setData({
-                // products: res.data.data
-                products: processed_products
-            })
-        }
-    });
+                    // products: res.data.data
+                    products: processed_products,
+                    // hot_products_cate_id: res.data.data[0].id
+                });
+            },
+        });
+
         wx.request({
             url: "http://192.168.5.31:8080/goods/goodsList",
             method: "GET",
             success: res => {
-                // console.log(res);
                 this.setData({
                     products_list: res.data.data
+                })
+            }
+        });
+        wx.request({
+            url: 'http://192.168.5.31:8080/goods/queryByCateId',
+            method: "GET",
+            data: {
+                cateId: this.data.hot_products_cate_id,
+                // cateId: 47,
+            },
+            success: (res) => {
+                this.setData({
+                    hot_products_cate_list: res.data.data,
                 })
             }
         })

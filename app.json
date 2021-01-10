@@ -1,33 +1,34 @@
 {
-  "pages":[
-    "pages/home/home",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/user/user"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#0f9b0f",
-    "navigationBarTitleText": "吃了么",
-    "navigationBarTextStyle":"white"
-  },
-  "tabBar": {
-      "list": [
-          {
-            "text": "首页",
-            "pagePath": "pages/home/home",
-            "selectedIconPath": "/imgs/外卖2.png",
-            "iconPath": "/imgs/外卖.png"
-          },
-            
-          {
-            "text": "我的",
-            "pagePath": "pages/user/user",
-            "selectedIconPath": "/imgs/我的2.png",
-            "iconPath": "/imgs/我的.png"
-          }
-      ]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/home/home",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/user/user",
+        "pages/category/category",
+        "pages/details/details"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#0f9b0f",
+        "navigationBarTitleText": "吃了么",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "text": "首页",
+                "pagePath": "pages/home/home",
+                "selectedIconPath": "/imgs/外卖2.png",
+                "iconPath": "/imgs/外卖.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/user/user",
+                "selectedIconPath": "/imgs/我的2.png",
+                "iconPath": "/imgs/我的.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }
