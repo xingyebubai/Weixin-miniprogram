@@ -24,7 +24,7 @@ Page({
         // 分类产品信息
         products_list: [],
         // 热销榜
-        hot_products_cate_id: 47,
+        hot_products_cate_id: 0,
         hot_products_cate_list: [],
 
 
@@ -60,32 +60,8 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        var processed_products;
-        var that = this;
-        var category_id = 0;
-        wx.request({
-            url: "http://192.168.5.31:8080/cate/queryAll",
-            method: "GET",
-            success: res => {
-                processed_products = this.processProducts(res.data.data);
-                this.setData({
-                    // products: res.data.data
-                    products: processed_products,
-                    // hot_products_cate_id: res.data.data[0].id
-                });
-            },
-        });
-
-        wx.request({
-            url: "http://192.168.5.31:8080/goods/goodsList",
-            method: "GET",
-            success: res => {
-                this.setData({
-                    products_list: res.data.data
-                })
-            }
-        });
+  
+    requestGoodsByCateId: function() {
         wx.request({
             url: 'http://192.168.5.31:8080/goods/queryByCateId',
             method: "GET",
@@ -99,6 +75,35 @@ Page({
                 })
             }
         })
+    },
+    onLoad: function (options) {
+        var processed_products;
+        wx.request({
+            url: "http://192.168.5.31:8080/cate/queryAll",
+            method: "GET",
+            success: res => {
+                processed_products = this.processProducts(res.data.data);
+                this.setData({
+                    // products: res.data.data
+                    products: processed_products,
+                    hot_products_cate_id: res.data.data[0].id
+                });
+                // 下面这个函数的请求参数需要hot_products_cate_id，wx.request是异步的，不知道执行顺序。
+                // 把requestGoodsByCateId放到success回调函数里执行
+                // 保证了执行的先后顺序
+                this.requestGoodsByCateId();
+            },
+        });
+       
+        wx.request({
+            url: "http://192.168.5.31:8080/goods/goodsList",
+            method: "GET",
+            success: res => {
+                this.setData({
+                    products_list: res.data.data
+                })
+            }
+        });
     },
 
     /**
