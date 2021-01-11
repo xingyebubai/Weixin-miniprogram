@@ -62,13 +62,16 @@ Page({
      */
   
     requestGoodsByCateId: function() {
+        var shopId = 1;
+        var host = getApp().globalData.host;
         wx.request({
-            url: 'http://192.168.5.31:8080/goods/queryByCateId',
+            // resetful风格的请求，不用传参
+            url: `${host}/goods/goods/${shopId}/${this.data.hot_products_cate_id}`,
             method: "GET",
-            data: {
-                cateId: this.data.hot_products_cate_id,
-                // cateId: 47,
-            },
+            // data: {
+            //     cateId: this.data.hot_products_cate_id,
+            //     // cateId: 47,
+            // },
             success: (res) => {
                 this.setData({
                     hot_products_cate_list: res.data.data,
@@ -78,8 +81,9 @@ Page({
     },
     onLoad: function (options) {
         var processed_products;
+        var host = getApp().globalData.host;
         wx.request({
-            url: "http://192.168.5.31:8080/cate/queryAll",
+            url: `${host}/cate/cates`,
             method: "GET",
             success: res => {
                 processed_products = this.processProducts(res.data.data);
@@ -96,7 +100,7 @@ Page({
         });
        
         wx.request({
-            url: "http://192.168.5.31:8080/goods/goodsList",
+            url: `${host}/goods/goodss`,
             method: "GET",
             success: res => {
                 this.setData({

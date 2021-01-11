@@ -20,13 +20,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options.cateId);
+        var shopId = 1;
+        var host = getApp().globalData.host;
+        // console.log(options.cateId);
         wx.request({
-            url: 'http://192.168.5.31:8080/goods/queryByCateId',
+            // resetful风格请求
+            url: `${host}/goods/goods/${shopId}/${options.cateId}`,
             method: "GET",
-            data: {
-                cateId: options.cateId
-            },
+            // data: {
+            //     cateId: options.cateId
+            // },
             success: (res) => {
                 console.log(res);
                 this.setData({
