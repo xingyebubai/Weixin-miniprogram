@@ -18,10 +18,10 @@ Page({
             "/imgs/banner9.jpg",
             "/imgs/banner10.jpg",
         ],
-        // 所有产品的信息
+        // 分类产品信息
         products: [],
 
-        // 分类产品信息
+        // 所有产品的信息
         products_list: [],
         // 热销榜
         hot_products_cate_id: 0,
@@ -29,11 +29,21 @@ Page({
 
 
     },
+    addToShoppingCart: function (event) {
+        var food_index = event.currentTarget.dataset.index;
+        if (getApp().globalData.food_map === null) {
+            getApp().globalData.food_map = new Map();
+        }
+        let count = getApp().globalData.food_map.get(this.data.products_list[food_index]) || 0;
+        getApp().globalData.food_map.set(this.data.products_list[food_index], count + 1);
+        console.log(getApp().globalData.food_map);
+
+    },
     gotoProductDetails: function (event) {
-      var target_id = event.currentTarget.dataset.id;
-      wx.navigateTo({
-          url: "/pages/details/details?id=" + target_id,
-      })  
+        var target_id = event.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: "/pages/details/details?id=" + target_id,
+        })
     },
 
     gotoProductCategory: function (event) {
@@ -60,8 +70,8 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-  
-    requestGoodsByCateId: function() {
+
+    requestGoodsByCateId: function () {
         var shopId = 1;
         var host = getApp().globalData.host;
         wx.request({
@@ -98,7 +108,7 @@ Page({
                 this.requestGoodsByCateId();
             },
         });
-       
+
         wx.request({
             url: `${host}/goods/goodss`,
             method: "GET",

@@ -1,22 +1,37 @@
 <!--pages/category/category.wxml-->
-<wxs module="filters" src="category.wxs"></wxs>
+<wxs module="filters" src="category.wxs" />
 
 <view class="category_container">
 
-<!-- 商品列表 -->
+	<!-- 商品列表 -->
 	<view class="product_list_container">
 		<view class="product_list_area">
 			<block wx:for="{{products_list}}" wx:key="key">
-				<view class="product_list_item">
-					<image src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" bindtap="gotoProductDetails" data-id="{{item.id}}"/>
-					<view class="describe">
-						<text class="title">{{item.name}}</text>
-						<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分</text>
-						<text class="month_sale">月销:{{item.sellcount}}</text>
-						<text class="price">￥{{item.price}}</text>
+				<block wx:if="{{item.state != 0}}">
+					<view class="product_list_item">
+						<image src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" bindtap="gotoProductDetails" data-id="{{item.id}}" />
+						<view class="describe">
+							<text class="title">{{item.name}}</text>
+							<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分</text>
+							<text class="month_sale">月销:{{item.sellcount}}</text>
+							<text class="price">￥{{item.price}}</text>
+						</view>
 					</view>
-				</view>
+				</block>
+
+				<block wx:else>
+					<view class="product_list_item">
+						<image src="/imgs/upload/imgs/goods_img/shouqing.jpg"/>
+						<view class="describe">
+							<text class="title">{{item.name}}</text>
+							<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分</text>
+							<text class="month_sale">月销:{{item.sellcount}}</text>
+							<text class="price">￥{{item.price}}</text>
+						</view>
+					</view>
+				</block>
 			</block>
 		</view>
 	</view>
 </view>
+

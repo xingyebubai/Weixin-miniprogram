@@ -92,11 +92,13 @@
     border-radius: 20rpx;
     margin: 2rpx;
 }
+
 .hot_item{
     /* border: 1px solid red; */
     height: 450rpx;
     width: 30%;
     margin: 5rpx;
+    font-size: 35rpx;
 }
 
 
@@ -117,11 +119,18 @@
     margin: 10rpx 0;
     position: relative;
 }
-.product_list_item image{
+.product_list_item .food_img{
     height: 200rpx;
     width: 200rpx;
     border-radius: 20rpx;
     margin: 10rpx;
+}
+.product_list_item .add {
+    height: 50rpx;
+    width: 50rpx;
+    position: absolute;
+    right: 20rpx;
+    bottom: 20%;
 }
 .product_list_item .describe{
     width: 400rpx;

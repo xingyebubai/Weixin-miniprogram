@@ -1,2 +1,22 @@
-<!--pages/details/details.wxml-->
-<text>这里是商品详情页{{id}}</text>
+<!-- pages/details/details.wxml -->
+<view class="product_details_container">
+    <view class="product_area">
+        <view class="img">
+            <image src="/imgs/upload/imgs/goods_img/{{product.imgurl}}" />
+        </view>
+        <view class="product_display">
+            <text class="title">{{product.name}}</text>
+            <text class="month_sale">月销:{{product.sellcount}}</text>
+            <text class="price">￥{{product.price}}</text>
+            <image class="add" src="/imgs/添加.png" bindtap="addToShoppingCart" />
+        </view>
+        <view class="product_describe">
+            <text class="brief">商品简介</text>
+            <text class="describe">{{product.goodsdesc}}</text>
+        </view>
+    </view>
+
+    <view class="button">
+        
+    </view>
+</view>

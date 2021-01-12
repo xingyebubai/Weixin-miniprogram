@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: "http://192.168.43.17:8080",
+    host: "http://192.168.5.30:8080",
+    food_map: null,
   }
 })
