@@ -44,7 +44,7 @@
 			<block wx:for="{{products_list}}" wx:key="key" wx:for-index="index">
 				<view class="product_list_item">
 					<image class="food_img" src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" 
-					bindtap="gotoProductDetails" data-id="{{item.id}}"/>
+					bindtap="gotoProductDetails" data-index="{{index}}"/>
 					<view class="describe">
 						<text class="title">{{item.name}}</text>
 						<text class="rating">{{filters.toFix((item.sellcount - 2) * (4.8 - 2) / (295 - 2) + 2, 1)}}分

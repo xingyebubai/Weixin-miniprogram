@@ -40,9 +40,9 @@ Page({
 
     },
     gotoProductDetails: function (event) {
-        var target_id = event.currentTarget.dataset.id;
+        var target_index = event.currentTarget.dataset.index;
         wx.navigateTo({
-            url: "/pages/details/details?id=" + target_id,
+            url: "/pages/details/details?index=" + target_index,
         })
     },
 
@@ -113,6 +113,8 @@ Page({
             url: `${host}/goods/goodss`,
             method: "GET",
             success: res => {
+                getApp().globalData.products_list = res.data.data;
+                // debugger;
                 this.setData({
                     products_list: res.data.data
                 })

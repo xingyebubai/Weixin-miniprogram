@@ -37,5 +37,6 @@ App({
     userInfo: null,
     host: "http://192.168.5.30:8080",
     food_map: null,
+    products_list: []
   }
 })

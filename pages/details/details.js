@@ -5,7 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        id: 0,
+        // id: 0,
+        index: 0,
         product: null,
     },
     addToShoppingCart: function (event) {
@@ -21,21 +22,29 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var shopId = 1;
-        var host = getApp().globalData.host;
-        wx.request({
-            // resetful风格请求
-            url: `${host}/goods/selectOne/${options.id}`,
-            method: "GET",
-            success: (res) => {
-                console.log(res);
-                this.setData({
-                    id: options.id,
-                    product: res.data.data,
-                })
-            },
+        console.log(options);
+        // 数据存储在全局变量里，不用再请求
+        // var shopId = 1;
+        // var host = getApp().globalData.host;
+        // wx.request({
+        //     // resetful风格请求
+        //     url: `${host}/goods/selectOne/${options.id}`,
+        //     method: "GET",
+        //     success: (res) => {
+        //         console.log(res);
+        //         this.setData({
+        //             id: options.id,
+        //             product: res.data.data,
+        //         })
+        //     },
 
+        // })
+        this.setData({
+            index: options.index,
+            product: getApp().globalData.products_list[options.index],
         })
+        // debugger;
+        console.log(this.data.product);
     },
 
     /**
