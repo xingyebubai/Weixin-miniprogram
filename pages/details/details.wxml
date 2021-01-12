@@ -16,7 +16,35 @@
         </view>
     </view>
 
-    <view class="button">
+    <view class="modal" hidden="{{hidenModel}}">
+            <text class="title">已选商品</text>
+        <view class="info">
+            <block wx:for="{{products_list}}" wx:key="key" wx:for-index="index">
+				<view class="shopping_cart_product_list_item">
+					<image class="shopping_cart_food_img" src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" />
+					<view class="describe">
+						<text class="name">{{item.name}}</text>
+						<text class="price">￥{{item.price}}</text>
+                    </view>
+                    <view class="add_or_reduce">
+                        <image src="/imgs/减少.png" bindtap="reduce" data-index="{{index}}" />
+                        <text class="count">{{count[index]}}</text>
+                        <image src="/imgs/添加.png" bindtap="add" data-index="{{index}}"/>
+                    </view>
+				</view>
+			</block>
+        </view>
+    </view>
+
+
+    <view class="shopping_cart_container">
+        <view class="shopping_cart">
+            <image src="/imgs/购物车2.png" bindtap="showModal"/>
+            <text class="tips">未选购商品</text>
+            <view class="submit">
+                <text>￥10起送</text>
+            </view>
+        </view>
         
     </view>
 </view>

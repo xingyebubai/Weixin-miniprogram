@@ -8,14 +8,81 @@ Page({
         // id: 0,
         index: 0,
         product: null,
+        hidenModel: true,
+        products_list: [],
+        count: [],
     },
+    add: function(event) {
+        console.log(event);
+        var index = event.currentTarget.dataset.index;
+
+        let count = this.data.count[index];
+        getApp().globalData.food_map.set(this.data.products_list[index], count + 1);
+        // console.log(getApp().globalData.food_map);
+        this.listenShoppingCartChange()
+    },
+    reduce: function(event) {
+        var index = event.currentTarget.dataset.index;
+        console.log(index);
+
+        let count = this.data.count[index];
+        getApp().globalData.food_map.set(this.data.products_list[index], count - 1);
+        // console.log(getApp().globalData.food_map);
+        this.listenShoppingCartChange()
+    },
+    showModal: function (event) {
+        // this.setData({
+        //     state: this.data.state == 'hide' ? 'show':'hide',
+        // })
+        // setTimeout(() => {
+        //     if (this.data.hidenModel) {
+        //         this.setData({
+        //             hidenModel: false,
+        //         })
+        //     } else {
+        //         this.setData({
+        //             hidenModel: true,
+        //         })
+        //     }
+        // }, 1000);
+        setTimeout(() => {
+            this.setData({
+                hidenModel: !this.data.hidenModel,
+            })
+
+        })
+
+    },
+
+    listenShoppingCartChange: function() {
+        var temp_arr_food = [];
+        var temp_arr_food_count = [];
+        var food_map = getApp().globalData.food_map;
+
+        for (let item of food_map.keys()) {
+            if(food_map.get(item) == 0) {
+                food_map.delete(item);
+                continue;
+            }
+            temp_arr_food.push(item);
+            temp_arr_food_count.push(food_map.get(item));
+
+        }
+        this.setData({
+            products_list: temp_arr_food,
+            count: temp_arr_food_count,
+        })
+        // console.log(this.data.products_list);
+    },
+
     addToShoppingCart: function (event) {
         if (getApp().globalData.food_map === null) {
             getApp().globalData.food_map = new Map();
         }
-        let count = getApp().globalData.food_map.get(this.data.product)|| 0;
+        let count = getApp().globalData.food_map.get(this.data.product) || 0;
         getApp().globalData.food_map.set(this.data.product, count + 1);
-        console.log(getApp().globalData.food_map);
+        // console.log(getApp().globalData.food_map);
+        this.listenShoppingCartChange();
     },
 
     /**
@@ -44,7 +111,8 @@ Page({
             product: getApp().globalData.products_list[options.index],
         })
         // debugger;
-        console.log(this.data.product);
+        // console.log(this.data.product);
+        this.listenShoppingCartChange();
     },
 
     /**
