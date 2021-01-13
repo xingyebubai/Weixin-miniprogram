@@ -1,2 +1,27 @@
-<!--pages/orders/orders.wxml-->
-<text>pages/orders/orders.wxml</text>
+<!-- pages/orders/orders.wxml -->
+<view class="order_container">
+    <view class="view1 address">
+        <view>收货地址区域</view>
+    </view>
+    <view class="view1 order_details">
+        <block wx:for="{{products}}" wx:key="key" wx:for-index="index">
+            <view class="product_area">
+                <image src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" />
+                <view class="product_info">
+                    <text class="name">{{item.name}}</text>
+                    <text class="count">x{{count[index]}}</text>
+                </view>
+                <text class="price">￥{{item.price * count[index]}}</text>
+            </view>
+        </block>
+    </view>
+    <view class="submit_order">
+        <view class="total">
+            合计:
+            <text>{{total}}</text>
+        </view>
+        <view class="submit">
+            <text>提交订单</text>
+        </view>
+    </view>
+</view>

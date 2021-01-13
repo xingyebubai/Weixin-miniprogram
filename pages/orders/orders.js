@@ -5,6 +5,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        products: [],
+        count: [],
+        total: 0,
 
     },
 
@@ -12,8 +15,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
+        let food_map = getApp().globalData.food_map;
+        let products = [];
+        let count = []; 
+        let total = 0;
+        for (const item of food_map.keys()) {
+            products.push(item);
+            count.push(food_map.get(item));
+            total += item.price * food_map.get(item);
+        }
+        this.setData({
+            products: products,
+            count: count,
+            total: total,
+        })
     },
+    
 
     /**
      * 生命周期函数--监听页面初次渲染完成

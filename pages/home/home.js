@@ -40,10 +40,21 @@ Page({
 
     },
     gotoProductDetails: function (event) {
-        var target_index = event.currentTarget.dataset.index;
+        // 需要获取相同cateId数组的元素的索引，cateId数组是products_list的子数组
+        // => 获取子数组中的元素在父数组中的索引
+        var target_id = event.currentTarget.dataset.id;
+        // console.log(target_id);
+        // debugger;
+        var father_index = getApp().globalData.products_list.findIndex(item => item.id == target_id);
+        // debugger;
         wx.navigateTo({
-            url: "/pages/details/details?index=" + target_index,
+            url: `/pages/details/details?index=${father_index}`,
         })
+
+        // var target_index = event.currentTarget.dataset.index;
+        // wx.navigateTo({
+        //     url: "/pages/details/details?index=" + target_index,
+        // })
     },
 
     gotoProductCategory: function (event) {
@@ -83,6 +94,7 @@ Page({
             //     // cateId: 47,
             // },
             success: (res) => {
+                console.log(res.data.data);
                 this.setData({
                     hot_products_cate_list: res.data.data,
                 })

@@ -18,7 +18,6 @@ Page({
         // 当微信小程序navigateTo传入参数是个object时，请使用JSON.strtingify将object转化为字符串
         // 需要注意的是，不要将JSON.stringify(object)字符串先使用变量存起来，然后进行传递
         // 这样写接收的时候无法解析成功object
-        debugger;
         wx.navigateTo({
           url: '/pages/orders/orders'
         })
