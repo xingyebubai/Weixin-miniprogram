@@ -26,18 +26,51 @@ Page({
         // 热销榜
         hot_products_cate_id: 0,
         hot_products_cate_list: [],
+        keyword: "",
+        show_search_result: false,
 
 
     },
     addToShoppingCart: function (event) {
-        var food_index = event.currentTarget.dataset.index;
+        let global_products_list = getApp().globalData.products_list;
+        // debugger;
+        let food_id = event.currentTarget.dataset.id;
+
+        // 花括号需要 return 
+        let food_index = global_products_list.findIndex(item => item.id == food_id);
         if (getApp().globalData.food_map === null) {
             getApp().globalData.food_map = new Map();
         }
-        let count = getApp().globalData.food_map.get(this.data.products_list[food_index]) || 0;
-        getApp().globalData.food_map.set(this.data.products_list[food_index], count + 1);
+        let count = getApp().globalData.food_map.get(global_products_list[food_index]) || 0;
+        getApp().globalData.food_map.set(global_products_list[food_index], count + 1);
         console.log(getApp().globalData.food_map);
 
+    },
+    // 动态获取输入框的值
+    getkeyword: function (event) {
+        console.log(event.detail.value);
+        this.setData({
+            keyword: event.detail.value
+        })
+    },
+
+    // 执行搜索
+    dosearch: function () {
+        let host = getApp().globalData.host;
+        wx.request({
+            url: `${host}/goods/goodsLike`,
+            method: "GET",
+            data: {
+                value: this.data.keyword
+            },
+            success: (res) => {
+                // debugger;
+                this.setData({
+                    products_list: res.data.data
+                })
+
+            },
+        })
     },
     gotoProductDetails: function (event) {
         // 需要获取相同cateId数组的元素的索引，cateId数组是products_list的子数组
