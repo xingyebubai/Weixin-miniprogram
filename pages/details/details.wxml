@@ -1,4 +1,5 @@
 <!-- pages/details/details.wxml -->
+<wxs module="filters" src="details.wxs" />
 <view class="product_details_container">
     <view class="product_area">
         <view class="img">
@@ -15,36 +16,44 @@
             <text class="describe">{{product.goodsdesc}}</text>
         </view>
     </view>
-
     <view class="modal" hidden="{{hidenModel}}">
-            <text class="title">已选商品</text>
+        <text class="title">已选商品</text>
         <view class="info">
             <block wx:for="{{products_list}}" wx:key="key" wx:for-index="index">
-				<view class="shopping_cart_product_list_item">
-					<image class="shopping_cart_food_img" src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" />
-					<view class="describe">
-						<text class="name">{{item.name}}</text>
-						<text class="price">￥{{item.price}}</text>
+                <view class="shopping_cart_product_list_item">
+                    <image class="shopping_cart_food_img" src="/imgs/upload/imgs/goods_img/{{item.imgurl}}" />
+                    <view class="describe">
+                        <text class="name">{{item.name}}</text>
+                        <text class="price">￥{{item.price}}</text>
                     </view>
                     <view class="add_or_reduce">
                         <image src="/imgs/减少.png" bindtap="reduce" data-index="{{index}}" />
                         <text class="count">{{count[index]}}</text>
-                        <image src="/imgs/添加.png" bindtap="add" data-index="{{index}}"/>
+                        <image src="/imgs/添加.png" bindtap="add" data-index="{{index}}" />
                     </view>
-				</view>
-			</block>
+                </view>
+            </block>
         </view>
     </view>
-
-
     <view class="shopping_cart_container">
-        <view class="shopping_cart">
-            <image src="/imgs/购物车2.png" bindtap="showModal"/>
-            <text class="tips">未选购商品</text>
-            <view class="submit">
-                <text>￥10起送</text>
+        <!-- <block wx:if="{{shopping_cart_is_empty}}"> -->
+            <view hidden="{{!shopping_cart_is_empty}}" class="shopping_cart">
+                <image src="/imgs/购物车2.png" bindtap="showModal" />
+                <text class="tips">未选购商品</text>
+                <view class="submit">
+                    <text>￥1起送</text>
+                </view>
             </view>
-        </view>
-        
+        <!-- </block> -->
+
+        <!-- <block wx:else> -->
+            <view hidden="{{shopping_cart_is_empty}}" class="shopping_cart">
+                <image src="/imgs/购物车.png" bindtap="showModal" />
+                <text class="tips" style="color: red;font-weight: bold;">￥{{filters.toFix(price, 1)}}</text>
+                <view class="submit" style="background-color: #0f9b0f;" bindtap="gotoOrder">
+                    <text>去结算</text>
+                </view>
+            </view>
+        <!-- </block> -->
     </view>
 </view>

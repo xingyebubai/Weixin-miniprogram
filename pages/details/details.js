@@ -11,6 +11,35 @@ Page({
         hidenModel: true,
         products_list: [],
         count: [],
+        shopping_cart_is_empty: true,
+        price: 0,
+    },
+    gotoOrder: function() {
+        // 当微信小程序navigateTo传入参数是个object时，请使用JSON.strtingify将object转化为字符串
+        // 需要注意的是，不要将JSON.stringify(object)字符串先使用变量存起来，然后进行传递
+        // 这样写接收的时候无法解析成功object
+        debugger;
+        wx.navigateTo({
+          url: '/pages/orders/orders'
+        })
+    },
+    shoppingCartIsEmpty: function() {
+        let food_map = getApp().globalData.food_map;
+        if(food_map === null) return ;
+        
+        // debugger;
+        for (let item of food_map.keys()) {
+            // 如果能进入循环,就不是空, 改变值后结束循环
+            this.setData({
+                shopping_cart_is_empty: false
+            })
+            return;
+        }
+
+        // 如果运行到这里，说明food_map是空的
+        this.setData({
+            shopping_cart_is_empty: true
+        })
     },
     add: function(event) {
         console.log(event);
@@ -27,7 +56,7 @@ Page({
 
         let count = this.data.count[index];
         getApp().globalData.food_map.set(this.data.products_list[index], count - 1);
-        // console.log(getApp().globalData.food_map);
+        console.log(getApp().globalData.food_map);
         this.listenShoppingCartChange()
     },
     showModal: function (event) {
@@ -55,9 +84,12 @@ Page({
     },
 
     listenShoppingCartChange: function() {
+        // debugger;
+        if (getApp().globalData.food_map === null)  return;
         var temp_arr_food = [];
         var temp_arr_food_count = [];
         var food_map = getApp().globalData.food_map;
+        var price = 0;
 
         for (let item of food_map.keys()) {
             if(food_map.get(item) == 0) {
@@ -66,13 +98,17 @@ Page({
             }
             temp_arr_food.push(item);
             temp_arr_food_count.push(food_map.get(item));
+            price += item.price * food_map.get(item);
 
         }
         this.setData({
             products_list: temp_arr_food,
             count: temp_arr_food_count,
+            price: price,
         })
         // console.log(this.data.products_list);
+        // debugger;
+        this.shoppingCartIsEmpty();
     },
 
     addToShoppingCart: function (event) {
@@ -83,6 +119,7 @@ Page({
         getApp().globalData.food_map.set(this.data.product, count + 1);
         // console.log(getApp().globalData.food_map);
         this.listenShoppingCartChange();
+
     },
 
     /**
